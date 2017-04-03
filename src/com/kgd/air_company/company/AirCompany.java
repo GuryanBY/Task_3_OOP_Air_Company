@@ -1,15 +1,13 @@
 package com.kgd.air_company.company;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import com.kgd.air_company.aircraft.Aircraft;
-import com.kgd.air_company.aircraft.Plane;
 
 public class AirCompany extends Company {
 
 	private String airCompanyLicence;
-	private Set<Aircraft> base = new HashSet<>();
+	private HashSet<Aircraft> fleet = new HashSet<>();
 
 	public AirCompany(String address, String name, int taxNumber, String airCompanyLicence) {
 		super(address, name, taxNumber);
@@ -25,55 +23,44 @@ public class AirCompany extends Company {
 		this.airCompanyLicence = airCompanyLicence;
 	}
 
-	public void add(Aircraft aircraft) {
-		base.add(aircraft);
+	public HashSet<Aircraft> getFleet() {
+		return fleet;
 	}
 
-	public void remove(Aircraft aircraft) {
-		try {
-			if (base.isEmpty()) {
-				throw new Exception();
-			}
-
-			if (!base.remove(aircraft)) {
-				throw new Exception();
-			}
-
-		} catch (Exception e) {
-			System.err.println("Deleting problem");
-		}
-	}
-
-	public int getCargoPower() {
-
-		int cargoPower = 0;
-
-		for (Aircraft a : base) {
-			cargoPower += a.getCargoCapacity();
-		}
-
-		return cargoPower;
-	}
-
-	public int getPassengerPower() {
-		int passengerPower = 0;
-
-		for (Aircraft a : base) {
-			passengerPower += a.getPassangerCapasity();
-		}
-
-		return passengerPower;
-	}
-
-	public HashSet<Aircraft> searchByFuelConsamption(int lowerLimit, int upperLimit) {
-		HashSet<Aircraft> result = new HashSet<Aircraft>();
-		for (Aircraft element : base) {
-			element = (Plane) element;
-			if ((element.getFuelConsumption() >= lowerLimit) && (element.getFuelConsumption() <= upperLimit)) {
-				result.add(element);
-			}
-		}
-
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((airCompanyLicence == null) ? 0 : airCompanyLicence.hashCode());
+		result = prime * result + ((fleet == null) ? 0 : fleet.hashCode());
 		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AirCompany other = (AirCompany) obj;
+		if (airCompanyLicence == null) {
+			if (other.airCompanyLicence != null)
+				return false;
+		} else if (!airCompanyLicence.equals(other.airCompanyLicence))
+			return false;
+		if (fleet == null) {
+			if (other.fleet != null)
+				return false;
+		} else if (!fleet.equals(other.fleet))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "AirCompany [airCompanyLicence=" + airCompanyLicence + ", fleet=" + fleet + "]";
+	}
+
 }
