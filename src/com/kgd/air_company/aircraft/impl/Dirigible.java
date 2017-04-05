@@ -1,15 +1,17 @@
-package com.kgd.air_company.aircraft;
+package com.kgd.air_company.aircraft.impl;
 
-public class Plane extends Aircraft {
+import com.kgd.air_company.aircraft.Aircraft;
+import com.kgd.air_company.aircraft.Model;
 
+public class Dirigible extends Aircraft{
 	private int boardNumber;
 	private Model model;
 
-	public Plane() {
+	public Dirigible() {
 		super();
 	}
 
-	public Plane(int passangerCapasity, int cargoCapacity, int flightRange, int fuelConsumption, int boardNumber,
+	public Dirigible(int passangerCapasity, int cargoCapacity, int flightRange, int fuelConsumption, int boardNumber,
 			Model model) {
 		super(passangerCapasity, cargoCapacity, flightRange, fuelConsumption);
 		this.boardNumber = boardNumber;
@@ -49,20 +51,19 @@ public class Plane extends Aircraft {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Plane other = (Plane) obj;
+		Dirigible other = (Dirigible) obj;
 		if (boardNumber != other.boardNumber)
 			return false;
-		if (model == null) {
-			if (other.model != null)
-				return false;
-		} else if (!model.equals(other.model))
+		if (model != other.model)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Plane [boardNumber=" + boardNumber + ", model=" + model + ",flight range=" + this.getFlightRange()+"]";
+		return "Dirigible [boardNumber=" + boardNumber + ", model=" + model + "]";
 	}
+	
+	
 
 }

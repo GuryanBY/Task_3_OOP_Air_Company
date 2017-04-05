@@ -1,16 +1,18 @@
 package com.kgd.checking.world;
 
-import java.util.HashSet;
+
+import java.util.Set;
 
 import com.kgd.air_company.aircraft.Aircraft;
 import com.kgd.air_company.aircraft.Model;
-import com.kgd.air_company.aircraft.Plane;
-import com.kgd.air_company.company.AirCompany;
-import com.kgd.air_company.company.AirCompanyService;
+import com.kgd.air_company.aircraft.impl.Plane;
+import com.kgd.air_company.company.impl.AirCompany;
+import com.kgd.air_company.service.AirCompanyService;
 
 public class World {
 
 	public static void main(String[] args) {
+		
 		AirCompany guruAir = new AirCompany("Minsk, Main street, 2", "GuruAir", 987565, "SY23765765");
 
 		// https://belavia.by/company/air_fleet/
@@ -32,7 +34,7 @@ public class World {
 		int y = service.getPassengerPower();
 		System.out.println("Общая пассажировместимость авиакомпании составляет " + y + " человек.");
 
-		HashSet<Aircraft> res = service.searchByFuelConsumption(0, 90);
+		Set<Aircraft> res = service.searchByFuelConsumption(0, 90);
 
 		System.out.println("Летательные аппараты с заданными параметрами потребления топлива:");
 		for (Aircraft aa : res) {

@@ -1,8 +1,9 @@
-package com.kgd.air_company.company;
+package com.kgd.air_company.company.impl;
 
 import java.util.HashSet;
 
 import com.kgd.air_company.aircraft.Aircraft;
+import com.kgd.air_company.company.Company;
 
 public class AirCompany extends Company {
 

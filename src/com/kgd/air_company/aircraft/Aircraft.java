@@ -1,6 +1,6 @@
 package com.kgd.air_company.aircraft;
 
-public abstract class Aircraft implements Comparable<Aircraft> {
+public abstract class Aircraft {
 
 	private int passangerCapasity;
 	private int cargoCapacity;
@@ -49,9 +49,7 @@ public abstract class Aircraft implements Comparable<Aircraft> {
 		this.fuelConsumption = fuelConsumption;
 	}
 
-	public int compareTo(Aircraft aircraft) {
-		return this.getFlightRange() - aircraft.getFlightRange();
-	}
+
 
 	@Override
 	public int hashCode() {
